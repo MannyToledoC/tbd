@@ -20,6 +20,15 @@ services:
     restart: always
     # networks:
     #   - my_network
+
+  go:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./back:/app
 # networks:
 #   my_network:
 #     external: true
