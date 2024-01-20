@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  next:
+    container_name: next
+    build:
+      context: ./front
+      dockerfile: dev.Dockerfile
+    environment:
+      ENV_VARIABLE: ${ENV_VARIABLE}
+      NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+      NEXT_WEBPACK_USEPOLLING: true
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front/src:/app/src
+      - ./front/public:/app/public
+    restart: always
+    # networks:
+    #   - my_network
+# networks:
+#   my_network:
+#     external: true

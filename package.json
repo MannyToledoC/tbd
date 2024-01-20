@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "docker-dev-build": "docker compose -f docker-compose.dev.yml build",
+    "docker-dev-run": "docker compose -f docker-compose.dev.yml up",
+    "dev-init": "yarn docker-dev-build && yarn docker-dev-run",
+    "dev-down": "docker compose -f docker-compose.dev.yml down",
+    "docker-nuke": "docker kill $(docker ps -aq) && docker rm $(docker ps -aq)",
+    "docker-prune": "docker system prune -af --volumes",
+    "daemon": "docker compose -f docker-compose.dev.yml up -d",
+    "dev": "yarn docker-dev-run"
+  }
+}
