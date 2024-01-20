@@ -3,9 +3,10 @@ import Test from "@/Components/Test/Test";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <div className={styles.description}>
         <Test />
+        Hello
       </div>
     </main>
   );
