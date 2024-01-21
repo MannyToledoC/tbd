@@ -1,3 +1,7 @@
 [build]
 # Just plain old shell command. You could use `make` as well.
-cmd = "go build -o ./tmp/main ."
+cmd = "go build -o ./build/main ./cmd/main.go"
+bin = "./build/main"
+
+#uncomment if on windows https://github.com/cosmtrek/air/issues/274
+poll = true

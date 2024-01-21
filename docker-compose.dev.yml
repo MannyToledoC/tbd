@@ -26,9 +26,10 @@ services:
       context: ./back
       dockerfile: Dockerfile
     ports:
-      - "3001:3001"
+      - "8080:8080"
     volumes:
       - ./back:/app
+    restart: always
 # networks:
 #   my_network:
 #     external: true
