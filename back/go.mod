@@ -13,6 +13,7 @@ require (
 )
 
 require (
+	github.com/go-chi/chi v1.5.5
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/tmthrgd/go-hex v0.0.0-20190904060850-447a3041c3bc // indirect
 	github.com/uptrace/bun v1.1.17 // indirect

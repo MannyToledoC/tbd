@@ -12,17 +12,19 @@ import (
 	"github.com/uptrace/bun/extra/bundebug"
 )
 
+var db *bun.DB
+
 func main() {
 	fmt.Println("Hello, World")
 	// ctx := context.Background()
 	
-	db := databaseConnection()
+	db = databaseConnection()
 	db.AddQueryHook(bundebug.NewQueryHook(
 		bundebug.WithVerbose(true),
 		bundebug.FromEnv("BUNDEBUG"),
 	))
-
-	// _, err := db.NewCreateTable().Model((*models.User)(nil)).Exec(ctx)
+	defer db.Close()
+	// _, err := DB.NewCreateTable().Model((*models.User)(nil)).Exec(ctx)
 	// if err != nil {
 	// 	panic(err)
 	// }
@@ -38,6 +40,6 @@ func routing() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) { w.Write([]byte("OK")) })
-	r.Mount("/book", api.BookRoutes())
+	r.Mount("/user", api.UserRoutes(db))
 	http.ListenAndServe(":8080", r)
 }

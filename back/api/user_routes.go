@@ -4,16 +4,19 @@ import (
 	"tbd/internal/rest/user"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/uptrace/bun"
 )
 
-func UserRoutes()  chi.Router {
+func UserRoutes(db *bun.DB)  chi.Router {
 	r := chi.NewRouter()
+
 	userHandler := user.UserHandler{}
-	
-	r.Get("/", userHandler.ListBooks)
-	r.Post("/", userHandler.CreateBook)
-	r.Get("/{id}", userHandler.GetBook)
-	r.Put("/{id}", userHandler.UpdateBook)
-	r.Delete("/{id}", userHandler.DeleteBook)
+	userHandler.DB = db
+
+	r.Get("/", userHandler.ListUser)
+	r.Post("/", userHandler.CreateUser)
+	r.Get("/{id}", userHandler.GetUser)
+	r.Put("/{id}", userHandler.UpdateUser)
+	r.Delete("/{id}", userHandler.DeleteUser)
 	return r
 }
